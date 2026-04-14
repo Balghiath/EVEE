@@ -175,27 +175,18 @@
         overflow-y: auto;
       }
 
-      /* تخصيص شريط التمرير للقائمة المنسدلة وغيرها */
-      .dropdown-content::-webkit-scrollbar,
-      .gallery-grid::-webkit-scrollbar,
-      .news-list::-webkit-scrollbar {
+      /* تخصيص شريط التمرير للقائمة المنسدلة */
+      .dropdown-content::-webkit-scrollbar {
         width: 6px;
       }
-      .dropdown-content::-webkit-scrollbar-track,
-      .gallery-grid::-webkit-scrollbar-track,
-      .news-list::-webkit-scrollbar-track {
+      .dropdown-content::-webkit-scrollbar-track {
         background: #f1f1f1;
-        border-radius: 10px;
       }
-      .dropdown-content::-webkit-scrollbar-thumb,
-      .gallery-grid::-webkit-scrollbar-thumb,
-      .news-list::-webkit-scrollbar-thumb {
+      .dropdown-content::-webkit-scrollbar-thumb {
         background: var(--purple-light);
         border-radius: 10px;
       }
-      .dropdown-content::-webkit-scrollbar-thumb:hover,
-      .gallery-grid::-webkit-scrollbar-thumb:hover,
-      .news-list::-webkit-scrollbar-thumb:hover {
+      .dropdown-content::-webkit-scrollbar-thumb:hover {
         background: var(--purple-deep);
       }
 
@@ -542,41 +533,38 @@
       }
 
       /* ===== مجالات العمل ===== */
-      /* ===== مجالات العمل والفعاليات (مختصرة) ===== */
-      .fields-grid, .events-grid {
+      .fields-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
         gap: 20px;
         justify-content: center;
       }
-      .field-card, .event-card {
+      .field-card {
         background: white;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
       }
-      .event-card {
-        display: flex;
-        flex-direction: column;
-      }
-      .field-card:hover, .event-card:hover {
+      .field-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 15px 30px rgba(120, 44, 124, 0.15);
       }
-      .field-img, .event-img {
+      .field-img {
         height: 200px;
         width: 100%;
         position: relative;
         overflow: hidden;
       }
-      .field-img img, .event-img img {
+      .field-img img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.5s ease;
       }
-      .field-card:hover .field-img img, .event-card:hover .event-img img {
+      .field-card:hover .field-img img {
         transform: scale(1.1);
       }
       .field-overlay {
@@ -591,7 +579,7 @@
         );
         height: 50%;
       }
-      .field-content, .event-details {
+      .field-content {
         padding: 25px;
         text-align: center;
         position: relative;
@@ -600,28 +588,60 @@
         background: white;
         border-radius: 20px 20px 0 0;
       }
-      .event-details {
-        width: 100%;
-      }
       .field-content i {
         font-size: 30px;
         color: var(--pink-accent);
         margin-bottom: 10px;
       }
-      .field-content h3, .event-details h3 {
+      .field-content h3 {
         color: var(--purple-deep);
         font-size: 18px;
         margin-bottom: 10px;
         font-weight: 800;
       }
-      .field-content p, .event-details p {
+      .field-content p {
         font-size: 13px;
         color: var(--text-light);
         line-height: 1.6;
       }
 
       /* ===== الفعاليات والدورات ===== */
-
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+        gap: 20px;
+        justify-content: center;
+      }
+      .event-card {
+        display: flex;
+        flex-direction: column;
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .event-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(120, 44, 124, 0.15);
+      }
+      .event-img {
+        height: 200px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      .event-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .event-card:hover .event-img img {
+        transform: scale(1.1);
+      }
       .event-img .icon-overlay {
         position: absolute;
         top: 0;
@@ -639,6 +659,16 @@
       .event-card:hover .icon-overlay {
         background: rgba(120, 44, 124, 0.2);
       }
+      .event-details {
+        padding: 25px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        margin-top: -30px;
+        background: white;
+        border-radius: 20px 20px 0 0;
+      }
       .event-tag {
         display: inline-block;
         background-color: var(--pink-accent);
@@ -647,6 +677,17 @@
         border-radius: 20px;
         font-size: 12px;
         margin-bottom: 10px;
+      }
+      .event-details h3 {
+        color: var(--purple-deep);
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 800;
+      }
+      .event-details p {
+        font-size: 13px;
+        color: var(--text-light);
+        line-height: 1.6;
       }
 
       /* ===== التقارير السنوية ===== */
@@ -762,7 +803,20 @@
         padding-left: 5px;
         padding-bottom: 10px;
       }
-
+      .gallery-grid::-webkit-scrollbar {
+        width: 6px;
+      }
+      .gallery-grid::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      .gallery-grid::-webkit-scrollbar-thumb {
+        background: var(--purple-light);
+        border-radius: 10px;
+      }
+      .gallery-grid::-webkit-scrollbar-thumb:hover {
+        background: var(--purple-deep);
+      }
 
       .gallery-item {
         position: relative;
@@ -805,7 +859,20 @@
         overflow-y: auto;
         padding-left: 5px;
       }
-
+      .news-list::-webkit-scrollbar {
+        width: 6px;
+      }
+      .news-list::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      .news-list::-webkit-scrollbar-thumb {
+        background: var(--purple-light);
+        border-radius: 10px;
+      }
+      .news-list::-webkit-scrollbar-thumb:hover {
+        background: var(--purple-deep);
+      }
 
       .news-item {
         display: flex;
@@ -1240,7 +1307,7 @@
     <nav>
       <a href="#" class="logo">
         <img src="eve.jpg" alt="شعار ايف" />
-        <!-- <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjNzg4MkNDIiBkPSJNOTIuNCA5MmMtNC41IDAtOC4zIDMtOS42IDcuNkw0Mi4yIDIwNi40Yy0uOSAzIC4zIDYuNSA0LjcgOC4xaDM0Mi4yYzQuNCAwIDguMi0zLjUgOC4yLTcuOGwtLjEtLjJWOTRjMC00LjMtMi42LTUuMi01LjgtNS4yLTUuNCAwLTQuOS41LTkuOC0yLjMtNS0yLjYtOS40LTQuMi0xNC01LjgtNC43LTEuNS05LjItMi42LTE0LTMuNi00LjgtMS05LjYtMS44LTE0LjQtMi42LTUtLTYtOS43LTEuMi0xNC40LTEuNy00LjgtLjQtOS42LS44LTE0LjMtMS4xLTUtLjItOS44LS4zLTE0LjQtLjMtNC41IDAtOS4xIDAtMTMuNi4xLTQuNi4xLTkuMS4yLTEzLjUuNC00LjQuMi04LjguNC0xMy4xLjYtNC4zLjQtOC41LjYtMTIuNy45LTQuMi4zLTguNC42LTEyLjUuOWwtMS45LjIgNC40IDEzOC45YzUuMy0xIDEwLjYtMS44IDE1LjYtMi41IDYuMi0uOCAxMi40LTEuNSAxOC41LTIuM3YxMzcuOWMtNi4xLjUtMTIuMiAxLTE4LjMgMS43LTUuMS41LTEwLjEgMS4yLTE1LjEgMkg5Mi40ek0xMTUgMTU2djEyMGMwIDIyLjEtMTcuOSA0MC00MCA0MHMtNDAtMTcuOS00MC00MFYxNTZ6Ii8+PHBhdGggZmlsbD0iI0M4NzlDMiIgZD0iTTE5NSA5NHYxMzhjMCAyMi4xLTE3LjkgNDAtNDAgNDBzLTQwLTE3LjktNDAtNDBWOTR6TTI3NSA5NHYxMzhjMCAyMi4xLTE3LjkgNDAtNDAgNDBzLTQwLTE3LjktNDAtNDBWOTR6TTM1NSA5NHYxMzhjMCAyMi4xLTE3LjkgNDAtNDAgNDBzLTQwLTE3LjktNDAtNDBWOTR6TTQzNSA5NHYxMzhjMCAyMi4xLTE3LjkgNDAtNDAgNDBzLTQwLTE3LjktNDAtNDBWOTR6Ii8+PC9zdmc+" alt="شعار إيف"> -->
+
         إيڤ <span> EVE </span>
       </a>
 
@@ -1281,7 +1348,6 @@
           <div class="dropdown-content">
             <a href="#media-news">الأخبار والأنشطة</a>
             <a href="#media-gallery">معرض الصور</a>
-            <a href="#media-pubs">الإصدارات والمطبوعات</a>
           </div>
         </li>
 
@@ -1308,7 +1374,6 @@
         </div>
         <div class="hero-image reveal">
           <img src="eve.jpg" alt="جمعية ايف لتنمية المرأة والمجتمع" />
-          <!-- <img src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="سيدة محجبة تعمل بإبداع"> -->
         </div>
       </div>
     </section>
