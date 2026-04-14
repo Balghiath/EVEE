@@ -1363,6 +1363,12 @@
           display: block;
         }
 
+        /* تغيير لون شريط الأخبار عندما تفتح القائمة الجانبية في الجوال/التابلت */
+        body.menu-open .news-ticker .ticker-text {
+          color: var(--pink-accent) !important;
+          z-index: 1005;
+        }
+
         .dropdown-content {
           display: none;
           position: static;
@@ -2636,6 +2642,7 @@
       const navLinks = document.getElementById("navLinks");
       menuToggle.addEventListener("click", () => {
         navLinks.classList.toggle("active");
+        document.body.classList.toggle("menu-open");
       });
 
       const dropdowns = document.querySelectorAll(".dropdown");
@@ -2659,6 +2666,7 @@
         .forEach((link) => {
           link.addEventListener("click", function (e) {
             navLinks.classList.remove("active");
+            document.body.classList.remove("menu-open");
 
             if (this.closest(".dropdown-content")) {
               const targetId = this.getAttribute("href").substring(1);
