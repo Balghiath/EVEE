@@ -79,18 +79,113 @@
         margin: 10px auto;
       }
 
-      /* ===== شريط التنقل (تم التعديل للكمبيوتر ليكون أنيقاً ومتوزعاً) ===== */
+      /* ===== شريط التنقل (تم التعديل للكمبيوتر ليكون أنيقاً ومتوزعاً) و الشريط العلوي ===== */
+      .main-header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .top-bar {
+        background-color: var(--bg-body);
+        color: var(--text-light);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 5%;
+        font-size: 13px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .date-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--purple-deep);
+        font-weight: 600;
+      }
+
+      .social-icons-top {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icons-top a {
+        color: var(--purple-light);
+        transition: color 0.3s;
+      }
+
+      .social-icons-top a:hover {
+        color: var(--pink-accent);
+      }
+
+      .news-ticker {
+        display: flex;
+        background-color: var(--purple-deep);
+        color: white;
+        height: 35px;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .ticker-title {
+        background-color: var(--pink-accent);
+        color: white;
+        padding: 0 20px;
+        font-weight: 700;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        font-size: 14px;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .ticker-content {
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+      }
+
+      .ticker-text {
+        position: absolute;
+        width: max-content;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        right: 100%; /* يضع النص في الحافة اليسرى للشاشة جاهزاً للدخول */
+        animation: scroll-ticker 25s linear infinite;
+      }
+
+      .ticker-text span {
+        margin-left: 50px;
+      }
+
+      .ticker-content:hover .ticker-text {
+        animation-play-state: paused;
+      }
+
+      @keyframes scroll-ticker {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(100vw + 100%));
+        }
+      }
+
+      /* تعديل Nav ليتناسب مع موقع الهيدر الجديد */
       nav {
         background-color: var(--white);
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 15px 5%;
-        position: fixed;
-        top: 0;
+        position: relative; /* كان fixed وتم نقله للهيدر */
         width: 100%;
-        z-index: 1000;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
       }
 
       .logo {
@@ -240,7 +335,7 @@
         display: flex;
         align-items: center;
         color: var(--white);
-        padding: 100px 10% 50px;
+        padding: 150px 10% 50px; /* زيادة البادينج العلوي بسبب الهيدر الجديد */
         position: relative;
         overflow: hidden;
       }
@@ -1084,6 +1179,83 @@
         margin-top: 30px;
       }
 
+      /* ===== القسم الإبداعي - المقولة / البانر ===== */
+      .quote-banner {
+        background:
+          linear-gradient(rgba(120, 44, 124, 0.75), rgba(120, 44, 124, 0.75)),
+          url("https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80")
+            no-repeat center center;
+        background-size: cover;
+        background-attachment: fixed; /* Parallax effect */
+        color: white;
+        text-align: center;
+        padding: 100px 10%;
+        position: relative;
+        box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+      }
+      .quote-banner i {
+        font-size: 40px;
+        color: var(--pink-accent);
+        margin-bottom: 20px;
+        animation: pulse 2s infinite;
+      }
+      .quote-banner h2 {
+        font-size: 36px;
+        font-weight: 800;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+      .quote-banner p {
+        font-size: 18px;
+        opacity: 0.9;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* ===== الزر العائم ===== */
+      .floating-btn {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        background: var(--pink-accent);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        font-size: 16px;
+        text-decoration: none;
+        box-shadow: 0 10px 25px rgba(225, 42, 124, 0.4);
+        z-index: 999;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+      }
+      .floating-btn i {
+        font-size: 20px;
+      }
+      .floating-btn:hover {
+        transform: translateY(-5px) scale(1.05);
+        background: var(--purple-deep);
+        color: var(--white);
+        animation: none;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(225, 42, 124, 0.7);
+        }
+        70% {
+          transform: scale(1.05);
+          box-shadow: 0 0 0 15px rgba(225, 42, 124, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(225, 42, 124, 0);
+        }
+      }
+
       /* ========================================= */
       /* ===== التجاوب الشامل مع كافة الشاشات ===== */
       /* ========================================= */
@@ -1174,7 +1346,7 @@
           justify-content: flex-start;
           align-items: stretch;
           position: absolute;
-          top: 70px;
+          top: 100%;
           left: 0;
           width: 100%;
           background-color: var(--white);
@@ -1241,6 +1413,18 @@
       }
 
       @media (max-width: 768px) {
+        .hero {
+          padding-top: 160px;
+        }
+        .top-bar {
+          flex-direction: column;
+          gap: 8px;
+          padding: 8px 5%;
+        }
+        .ticker-title {
+          font-size: 11px;
+          padding: 0 10px;
+        }
         .hero h1 {
           font-size: 32px;
         }
@@ -1254,13 +1438,19 @@
 
       @media (max-width: 480px) {
         .hero {
-          padding: 100px 5% 40px;
+          padding: 180px 5% 40px;
         }
         .section-padding {
           padding: 60px 5%;
         }
         .hero h1 {
           font-size: 28px;
+        }
+        .quote-banner {
+          padding: 60px 5%;
+        }
+        .quote-banner h2 {
+          font-size: 24px;
         }
         .hero-image img {
           width: 240px;
@@ -1304,61 +1494,93 @@
     </style>
   </head>
   <body>
-    <nav>
-      <a href="#" class="logo">
-        <img src="eve.jpg" alt="شعار ايف" />
-
-        إيڤ <span> EVE </span>
-      </a>
-
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">الرئيسية</a></li>
-        <li><a href="#about">من نحن</a></li>
-
-        <li class="dropdown">
-          <a href="#fields">مجالات العمل <i class="fas fa-chevron-down"></i></a>
-          <div class="dropdown-content">
-            <a href="#field-1">التمكين الاقتصادي</a>
-            <a href="#field-2">الرعاية الاجتماعية</a>
-            <a href="#field-3">التعليم والتدريب</a>
-            <a href="#field-4">التمكين الثقافي والقيادي</a>
-            <a href="#field-5">الصحة والرعاية</a>
-            <a href="#field-6">حماية البيئة</a>
-            <a href="#field-7">الدعم القانوني</a>
-            <a href="#field-8">تطوير الشباب</a>
-          </div>
-        </li>
-
-        <li><a href="#goals">إنجازاتنا وأهدافنا</a></li>
-        <li><a href="#events">الفعاليات</a></li>
-
-        <li class="dropdown">
-          <a href="#reports"
-            >التقارير السنوية <i class="fas fa-chevron-down"></i
-          ></a>
-          <div class="dropdown-content">
-            <a href="#report-2025">التقرير السنوي 2021 - 2025</a>
-          </div>
-        </li>
-
-        <li class="dropdown">
-          <a href="#media"
-            >المركز الإعلامي <i class="fas fa-chevron-down"></i
-          ></a>
-          <div class="dropdown-content">
-            <a href="#media-news">الأخبار والأنشطة</a>
-            <a href="#media-gallery">معرض الصور</a>
-          </div>
-        </li>
-
-        <li><a href="#stories">قصص نجاح</a></li>
-        <li><a href="#partners">شركاؤنا</a></li>
-        <li><a href="#contact">تواصل معنا</a></li>
-      </ul>
-      <div class="menu-toggle" id="menuToggle">
-        <i class="fas fa-bars"></i>
+    <header class="main-header">
+      <div class="top-bar text-sm">
+        <div class="date-container">
+          <i class="far fa-calendar-alt"></i> <span id="current-date"></span>
+        </div>
+        <div class="social-icons-top">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
       </div>
-    </nav>
+      <nav>
+        <a href="#" class="logo">
+          <img src="eve.jpg" alt="شعار ايف" />
+          إيڤ <span> EVE </span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">الرئيسية</a></li>
+          <li><a href="#about">من نحن</a></li>
+
+          <li class="dropdown">
+            <a href="#fields"
+              >مجالات العمل <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <a href="#field-1">التمكين الاقتصادي</a>
+              <a href="#field-2">الرعاية الاجتماعية</a>
+              <a href="#field-3">التعليم والتدريب</a>
+              <a href="#field-4">التمكين الثقافي والقيادي</a>
+              <a href="#field-5">الصحة والرعاية</a>
+              <a href="#field-6">حماية البيئة</a>
+              <a href="#field-7">الدعم القانوني</a>
+              <a href="#field-8">تطوير الشباب</a>
+            </div>
+          </li>
+
+          <li><a href="#goals">إنجازاتنا وأهدافنا</a></li>
+          <li><a href="#events">الفعاليات</a></li>
+
+          <li class="dropdown">
+            <a href="#reports"
+              >التقارير السنوية <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <a href="#report-2025">التقرير السنوي 2021 - 2025</a>
+            </div>
+          </li>
+
+          <li class="dropdown">
+            <a href="#media"
+              >المركز الإعلامي <i class="fas fa-chevron-down"></i
+            ></a>
+            <div class="dropdown-content">
+              <a href="#media-news">الأخبار والأنشطة</a>
+              <a href="#media-gallery">معرض الصور</a>
+            </div>
+          </li>
+
+          <li><a href="#stories">قصص نجاح</a></li>
+          <li><a href="#partners">شركاؤنا</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+      <div class="news-ticker">
+        <div class="ticker-title">أحدث الأخبار</div>
+        <div class="ticker-content">
+          <div class="ticker-text">
+            <span
+              >✨ عاجل: تعلن جمعية إيف عن إطلاق حاضنة الأعمال الجديدة للمشاريع
+              الناشئة ...</span
+            >
+            <span
+              >🌟 ترقبوا موعد المخيم القيادي التدريبي للشباب قريباً ...</span
+            >
+            <span
+              >🎉 تم بحمد الله تخريج أكثر من 200 متدربة في دبلوم الخياطة
+              المتقدمة ...</span
+            >
+          </div>
+        </div>
+      </div>
+    </header>
 
     <section id="home" class="hero">
       <div class="hero-container">
@@ -1570,6 +1792,15 @@
           </li>
         </ul>
       </div>
+    </section>
+
+    <section class="quote-banner reveal">
+      <i class="fas fa-quote-right"></i>
+      <h2>نجاح المجتمع يبدأ بتمكين أفراده</h2>
+      <p>
+        معاً نصنع مستقبلاً مشرقاً، ونوفر بيئة داعمة ومحفزة لتمكين الشباب في
+        مختلف المجالات التنموية والريادية.
+      </p>
     </section>
 
     <section id="fields" class="section-padding bg-white">
@@ -2382,7 +2613,24 @@
       </div>
     </footer>
 
+    <a href="#contact" class="floating-btn">
+      <i class="fas fa-hands-helping"></i> تطوع معنا
+    </a>
+
     <script>
+      // إعداد التاريخ الحالي للشريط العلوي
+      const dateElement = document.getElementById("current-date");
+      if (dateElement) {
+        const options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        const today = new Date().toLocaleDateString("ar-SA", options);
+        dateElement.textContent = today;
+      }
+
       // إعدادات القائمة الجانبية المنسدلة
       const menuToggle = document.getElementById("menuToggle");
       const navLinks = document.getElementById("navLinks");
