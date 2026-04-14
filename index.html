@@ -2659,17 +2659,36 @@
     </a>
 
     <script>
-      // إعداد التاريخ الحالي للشريط العلوي
+      // إعداد التاريخ الحالي للشريط العلوي (هجري وميلادي)
       const dateElement = document.getElementById("current-date");
       if (dateElement) {
-        const options = {
+        const date = new Date();
+
+        // التقويم الهجري مع ذكر اليوم
+        const optionsHijri = {
           weekday: "long",
           year: "numeric",
           month: "long",
           day: "numeric",
         };
-        const today = new Date().toLocaleDateString("ar-SA", options);
-        dateElement.textContent = today;
+        const hijriDate = new Intl.DateTimeFormat(
+          "ar-SA-u-ca-islamic-umalqura",
+          optionsHijri,
+        ).format(date);
+
+        // التقويم الميلادي بدون اليوم (لأننا ذكرناه في الهجري)
+        const optionsGregorian = {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        const gregorianDate = new Intl.DateTimeFormat(
+          "ar-EG",
+          optionsGregorian,
+        ).format(date);
+
+        // دمج التاريخين بفاصل أنيق
+        dateElement.innerHTML = `${hijriDate} <span style="margin: 0 8px; color: var(--pink-accent);">|</span> الموافـق ${gregorianDate} م`;
       }
 
       // إعدادات القائمة الجانبية المنسدلة
