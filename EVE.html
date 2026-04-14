@@ -379,7 +379,7 @@
 
       .values-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
         gap: 20px;
       }
       .value-card {
@@ -419,7 +419,7 @@
       }
       .stats-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
         gap: 30px;
         text-align: center;
       }
@@ -441,7 +441,7 @@
       /* ===== إنجازات وأهداف ===== */
       .goals-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
         gap: 30px;
         margin-bottom: 50px;
         justify-content: center;
@@ -535,7 +535,7 @@
       /* ===== مجالات العمل ===== */
       .fields-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
         gap: 20px;
         justify-content: center;
       }
@@ -608,7 +608,7 @@
       /* ===== الفعاليات والدورات ===== */
       .events-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
         gap: 20px;
         justify-content: center;
       }
@@ -693,7 +693,7 @@
       /* ===== التقارير السنوية ===== */
       .reports-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(340px, 420px));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
         gap: 30px;
         justify-content: center;
       }
@@ -796,7 +796,7 @@
 
       .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
         gap: 15px;
         max-height: 450px;
         overflow-y: auto;
@@ -914,7 +914,7 @@
       /* ===== قصص ملهمة ===== */
       .stories-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
         gap: 30px;
         justify-content: center;
       }
@@ -985,7 +985,7 @@
       /* ===== شركاء النجاح ===== */
       .partners-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 200px));
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
         gap: 20px;
         justify-content: center;
       }
@@ -1088,7 +1088,41 @@
       /* ===== التجاوب الشامل مع كافة الشاشات ===== */
       /* ========================================= */
 
-      @media (min-width: 1600px) {
+      @media (min-width: 1920px) {
+        .hero-container,
+        .about-container,
+        .grid-2,
+        .values-grid,
+        .stats-grid,
+        .goals-grid,
+        .detailed-goals,
+        .fields-grid,
+        .events-grid,
+        .reports-grid,
+        .media-container,
+        .stories-grid,
+        .cta-section,
+        .partners-grid,
+        .contact-container {
+          max-width: 1600px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .hero h1 {
+          font-size: 72px;
+        }
+        .hero p {
+          font-size: 28px;
+        }
+        .section-padding {
+          padding: 120px 10%;
+        }
+        .section-header h2 {
+          font-size: 56px;
+        }
+      }
+
+      @media (min-width: 1600px) and (max-width: 1919px) {
         .hero-container,
         .about-container,
         .grid-2,
