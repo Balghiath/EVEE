@@ -171,8 +171,9 @@
         display: flex;
         align-items: center;
         white-space: nowrap;
-        animation: ticker-swipe 20s linear infinite; /* سرعة مضاعفة */
+        animation: ticker-swipe 15s linear infinite; /* سرعة موحدة 15 ثانية */
         will-change: transform;
+        height: 100%;
       }
 
       .ticker-text span {
@@ -189,7 +190,7 @@
           transform: translateX(-100%); /* البداية: خارج تماماً من اليسار */
         }
         100% {
-          transform: translateX(100%); /* النهاية: يخرج تماماً من اليمين */
+          transform: translateX(100vw); /* النهاية: يخرج تماماً من اليمين */
         }
       }
 
@@ -1478,9 +1479,6 @@
           margin: 0 0 100px;
           border-radius: 0;
         }
-        .ticker-text {
-          animation-duration: 15s !important; /* سرعة متوسطة للتابلت */
-        }
       }
 
       /* تحسينات إضافية للشاشات الكبيرة جداً (تلفاز 4K) */
@@ -1505,10 +1503,6 @@
         .ticker-title {
           font-size: 11px;
           padding: 0 10px;
-        }
-        .ticker-text {
-          animation-duration: 12s !important; /* تسريع الحركة في الجوال لتناسب المسافة القصيرة */
-          font-size: 12px;
         }
         .hero h1 {
           font-size: 32px;
@@ -2788,7 +2782,7 @@
     </footer>
 
     <a href="#contact" class="floating-btn">
-      <i class="fas fa-hands-helping"></i> كن معنا
+      <i class="fas fa-hands-helping"></i> تطوع معنا
     </a>
 
     <script>
