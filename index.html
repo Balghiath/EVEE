@@ -171,14 +171,16 @@
         display: flex;
         align-items: center;
         white-space: nowrap;
-        animation: ticker-swipe 15s linear infinite; /* سرعة موحدة 15 ثانية */
+        animation: ticker-swipe 30s linear infinite; /* سرعة موحدة 15 ثانية كما طلبت */
         will-change: transform;
-        height: 100%;
+        height: 100%; /* لضمان التوسط العمودي الكامل */
+        width: max-content; /* ضمان أخذ عرض جميع الأخبار بالكامل */
       }
 
       .ticker-text span {
         margin-left: 80px;
         font-weight: 600;
+        flex-shrink: 0; /* منع انكماش النص لضمان ظهور الخبر كاملاً */
       }
 
       .ticker-content:hover .ticker-text {
@@ -187,10 +189,12 @@
 
       @keyframes ticker-swipe {
         0% {
-          transform: translateX(-100%); /* البداية: خارج تماماً من اليسار */
+          transform: translateX(
+            -100vw
+          ); /* البداية: يبدأ الدخول فوراً من حافة الشاشة اليسرى */
         }
         100% {
-          transform: translateX(100vw); /* النهاية: يخرج تماماً من اليمين */
+          transform: translateX(100%); /* النهاية: يخرج تماماً من اليمين */
         }
       }
 
@@ -1446,9 +1450,15 @@
           animation: none;
         }
         .dropdown > a {
+          display: flex;
           justify-content: space-between;
+          align-items: center;
           padding: 10px 0;
           border-bottom: 1px solid #eee;
+        }
+        .dropdown > a i {
+          padding: 10px; /* تكبير مساحة النقر للأيقونة في الجوال */
+          margin-left: -10px;
         }
         .nav-links > li > a {
           font-size: 15px;
@@ -2845,10 +2855,19 @@
         const link = dropdown.querySelector("a");
         link.addEventListener("click", (e) => {
           if (window.innerWidth <= 1100) {
-            dropdowns.forEach((d) => {
-              if (d !== dropdown) d.classList.remove("active");
-            });
-            dropdown.classList.toggle("active");
+            // التحقق مما إذا كان النقر على الأيقونة (السهم)
+            if (e.target.tagName === "I" || e.target.closest("i")) {
+              e.preventDefault(); // منع الانتقال
+              dropdowns.forEach((d) => {
+                if (d !== dropdown) d.classList.remove("active");
+              });
+              dropdown.classList.toggle("active");
+            } else {
+              // إذا تم النقر على النص، نقوم بإغلاق القائمة للانتقال للقسم (مثل الكمبيوتر)
+              if (navLinks.classList.contains("active")) {
+                toggleMenu();
+              }
+            }
           }
         });
       });
