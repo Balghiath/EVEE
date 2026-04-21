@@ -1417,7 +1417,7 @@
             0,
             0.6
           ); /* جعل الخلفية أغمق قليلاً بدلاً من التغبيش */
-          z-index: 10000;
+          z-index: 999; /* يجب أن تكون أقل من الهيدر (1000) لكي لا تغطي القائمة */
           opacity: 0;
           visibility: hidden;
           transition: all 0.4s ease;
@@ -2855,19 +2855,11 @@
         const link = dropdown.querySelector("a");
         link.addEventListener("click", (e) => {
           if (window.innerWidth <= 1100) {
-            // التحقق مما إذا كان النقر على الأيقونة (السهم)
-            if (e.target.tagName === "I" || e.target.closest("i")) {
-              e.preventDefault(); // منع الانتقال
-              dropdowns.forEach((d) => {
-                if (d !== dropdown) d.classList.remove("active");
-              });
-              dropdown.classList.toggle("active");
-            } else {
-              // إذا تم النقر على النص، نقوم بإغلاق القائمة للانتقال للقسم (مثل الكمبيوتر)
-              if (navLinks.classList.contains("active")) {
-                toggleMenu();
-              }
-            }
+            e.preventDefault(); // منع الانتقال للقسم، فقط إظهار القائمة الفرعية
+            dropdowns.forEach((d) => {
+              if (d !== dropdown) d.classList.remove("active");
+            });
+            dropdown.classList.toggle("active");
           }
         });
       });
