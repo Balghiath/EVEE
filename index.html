@@ -126,16 +126,20 @@
 
       .social-icons-top {
         display: flex;
-        gap: 15px;
+        gap: 25px; /* زيادة المسافة بين الأيقونات */
       }
 
       .social-icons-top a {
         color: var(--purple-light);
-        transition: color 0.3s;
+        font-size: 18px; /* تكبير حجم الأيقونات في الشريط العلوي */
+        transition:
+          color 0.3s,
+          transform 0.3s;
       }
 
       .social-icons-top a:hover {
         color: var(--pink-accent);
+        transform: scale(1.1); /* إضافة تأثير تكبير خفيف عند تمرير الماوس */
       }
 
       .news-ticker {
@@ -1194,16 +1198,20 @@
         display: block;
       }
       .social-icons {
-        margin: 20px 0;
+        margin: 25px 0;
       }
       .social-icons a {
         color: white;
-        font-size: 20px;
-        margin: 0 10px;
-        transition: color 0.3s;
+        font-size: 26px; /* تكبير حجم أيقونات الفوتر */
+        margin: 0 15px; /* زيادة المسافة بين الأيقونات */
+        transition:
+          color 0.3s,
+          transform 0.3s;
+        display: inline-block;
       }
       .social-icons a:hover {
         color: var(--pink-accent);
+        transform: scale(1.1);
       }
       .footer-bottom {
         font-size: 12px;
