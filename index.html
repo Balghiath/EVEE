@@ -168,29 +168,28 @@
       }
 
       .ticker-text {
-        position: absolute;
-        width: max-content;
-        height: 100%;
         display: flex;
         align-items: center;
-        right: 100%; /* يضع النص في الحافة اليسرى للشاشة جاهزاً للدخول */
-        animation: scroll-ticker 25s linear infinite;
+        white-space: nowrap;
+        animation: ticker-swipe 20s linear infinite; /* سرعة مضاعفة */
+        will-change: transform;
       }
 
       .ticker-text span {
-        margin-left: 50px;
+        margin-left: 80px;
+        font-weight: 600;
       }
 
       .ticker-content:hover .ticker-text {
         animation-play-state: paused;
       }
 
-      @keyframes scroll-ticker {
+      @keyframes ticker-swipe {
         0% {
-          transform: translateX(0);
+          transform: translateX(-100%); /* البداية: خارج تماماً من اليسار */
         }
         100% {
-          transform: translateX(calc(100vw + 100%));
+          transform: translateX(100%); /* النهاية: يخرج تماماً من اليمين */
         }
       }
 
@@ -1386,6 +1385,9 @@
           transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           overflow-y: auto;
           margin-right: 0;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+          transform: translate3d(0, 0, 0); /* تسريع عتادي لمنع التغبيش */
         }
         .nav-links.active {
           right: 0; /* تظهر عند تفعيل الكلاس */
@@ -1404,8 +1406,12 @@
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0, 0, 0, 0.5);
-          backdrop-filter: blur(3px);
+          background: rgba(
+            0,
+            0,
+            0,
+            0.6
+          ); /* جعل الخلفية أغمق قليلاً بدلاً من التغبيش */
           z-index: 10000;
           opacity: 0;
           visibility: hidden;
@@ -1658,6 +1664,26 @@
             <span
               >🎉 تم بحمد الله تخريج أكثر من 200 متدربة في دبلوم الخياطة
               المتقدمة ...</span
+            >
+            <span
+              >🏕️ فتح باب التسجيل في المخيم الصيفي "مبدعو المستقبل" للأطفال من
+              سن 7-12 سنة.</span
+            >
+            <span
+              >📚 دورة مكثفة في اللغة الإنجليزية للمبتدئين تبدأ مطلع الشهر
+              القادم.</span
+            >
+            <span
+              >🚀 إطلاق برنامج "تمكين المرأة" في ريادة الأعمال بالتعاون مع شركاء
+              النجاح.</span
+            >
+            <span
+              >🎨 ورشة عمل فنية متخصصة في الخط العربي والزخرفة الإسلامية الأسبوع
+              المقبل.</span
+            >
+            <span
+              >💡 ندوة توعوية حول أهمية الأمن السيبراني في حماية المشاريع
+              الصغيرة.</span
             >
           </div>
         </div>
