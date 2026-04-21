@@ -1295,23 +1295,9 @@
 
       @media (min-width: 1920px) {
         .hero-container,
-        .about-container,
-        .grid-2,
-        .values-grid,
-        .stats-grid,
-        .goals-grid,
-        .detailed-goals,
-        .fields-grid,
-        .events-grid,
-        .reports-grid,
-        .media-container,
-        .stories-grid,
-        .cta-section,
-        .partners-grid,
+        .section-padding > div:not(.section-header),
         .contact-container {
           max-width: 1600px;
-          margin-left: auto;
-          margin-right: auto;
         }
         .hero h1 {
           font-size: 72px;
@@ -1327,26 +1313,7 @@
         }
       }
 
-      @media (min-width: 1600px) and (max-width: 1919px) {
-        .hero-container,
-        .about-container,
-        .grid-2,
-        .values-grid,
-        .stats-grid,
-        .goals-grid,
-        .detailed-goals,
-        .fields-grid,
-        .events-grid,
-        .reports-grid,
-        .media-container,
-        .stories-grid,
-        .cta-section,
-        .partners-grid,
-        .contact-container {
-          max-width: 1400px;
-          margin-left: auto;
-          margin-right: auto;
-        }
+      @media (min-width: 1600px) {
         .section-header p {
           max-width: 800px;
         }
@@ -1461,7 +1428,6 @@
           margin-left: -10px;
         }
         .nav-links > li > a {
-          font-size: 15px;
           display: block;
           padding: 10px 0;
           border-bottom: 1px solid #eee;
@@ -2792,7 +2758,7 @@
     </footer>
 
     <a href="#contact" class="floating-btn">
-      <i class="fas fa-hands-helping"></i> تطوع معنا
+      <i class="fas fa-hands-helping"></i> كن معنا
     </a>
 
     <script>
@@ -2855,11 +2821,19 @@
         const link = dropdown.querySelector("a");
         link.addEventListener("click", (e) => {
           if (window.innerWidth <= 1100) {
-            e.preventDefault(); // منع الانتقال للقسم، فقط إظهار القائمة الفرعية
-            dropdowns.forEach((d) => {
-              if (d !== dropdown) d.classList.remove("active");
-            });
-            dropdown.classList.toggle("active");
+            // إذا تم الضغط على الأيقونة (السهم) نفتح القائمة الفرعية
+            if (e.target.tagName === "I" || e.target.closest("i")) {
+              e.preventDefault(); // منع الانتقال، فقط إظهار القائمة
+              dropdowns.forEach((d) => {
+                if (d !== dropdown) d.classList.remove("active");
+              });
+              dropdown.classList.toggle("active");
+            } else {
+              // إذا تم الضغط على النص، نقوم بالانتقال للقسم ونغلق القائمة الجانبية (نفس سلوك الكمبيوتر)
+              if (navLinks.classList.contains("active")) {
+                toggleMenu();
+              }
+            }
           }
         });
       });
