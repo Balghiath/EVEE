@@ -11,12 +11,13 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
     <style>
       :root {
+        --purple-deepp: #d0c2e2;
         --purple-deep: #782c7c;
         --purple-light: #c079c3;
         --pink-accent: #e12a7c;
@@ -44,6 +45,25 @@
         color: var(--text-dark);
         overflow-x: hidden;
         scroll-behavior: smooth;
+      }
+
+      /* تحسين استجابة الصور عالمياً */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* حاوية للمحتوى في الشاشات الكبيرة جداً (التلفاز) */
+      .top-bar,
+      nav,
+      .hero-container,
+      .section-padding > div:not(.section-header),
+      .contact-container,
+      footer {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
       }
 
       /* ===== إعدادات عامة والأنيميشن ===== */
@@ -373,7 +393,7 @@
         line-height: 1.2;
       }
       .hero h1 span {
-        color: var(--pink-accent);
+        color: var(--purple-deepp);
       }
       .hero p {
         font-size: 18px;
@@ -1430,9 +1450,19 @@
         }
       }
 
+      /* تحسينات إضافية للشاشات الكبيرة جداً (تلفاز 4K) */
+      @media (min-width: 2000px) {
+        :root {
+          font-size: 18px; /* تكبير الخط قليلاً لسهولة القراءة من مسافة بعيدة */
+        }
+        .section-padding {
+          padding: 120px 15%;
+        }
+      }
+
       @media (max-width: 768px) {
         .hero {
-          padding-top: 160px;
+          padding-top: 220px;
         }
         .top-bar {
           flex-direction: column;
@@ -1456,7 +1486,7 @@
 
       @media (max-width: 480px) {
         .hero {
-          padding: 180px 5% 40px;
+          padding: 240px 5% 60px;
         }
         .section-padding {
           padding: 60px 5%;
@@ -1518,10 +1548,20 @@
           <i class="far fa-calendar-alt"></i> <span id="current-date"></span>
         </div>
         <div class="social-icons-top">
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://wa.me/967738457415" target="_blank"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+          <a href="https://x.com/eve_yngo/" target="_blank"
+            ><i class="fab fa-x-twitter"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/eve_yngo?igsh=b3VtaW5zM25xa3h5"
+            target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://www.facebook.com/share/1DggPGLH1k/" target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
         </div>
       </div>
       <nav>
@@ -1983,7 +2023,7 @@
 
     <section id="events" class="section-padding">
       <div class="section-header reveal">
-        <h2>فعالياتنا المتنوعة</h2>
+        <h2>فعالياتنا المتنوعة المتاحة حاليا</h2>
         <p>برامج تلبي كافة احتياجات المجتمع، من دورات ومخيمات وأمسيات هادفة.</p>
       </div>
       <div class="events-grid reveal" id="events-grid">
@@ -2615,6 +2655,31 @@
             <input type="phone" class="form-control" placeholder="رقم الهاتف" />
           </div>
           <div class="form-group">
+            <select
+              class="form-control"
+              id="reason-select"
+              onchange="handleReasonChange(this)"
+            >
+              <option value="" disabled selected>سبب التواصل</option>
+              <option value="تسجيل في دورة">تسجيل في دورة</option>
+              <option value="تسجيل في مخيم ">تسجيل في مخيم</option>
+              <option value="تسجيل في أمسية">تسجيل في أمسية</option>
+              <option value=" تسجيل في بازار">تسجيل في بازار</option>
+              <option value="تسجيل كـ متطوع">تسجيل كـ متطوع</option>
+              <option value="دعم مادي">دعم مادي</option>
+              <option value="أخرى">أخرى</option>
+            </select>
+          </div>
+          <div
+            class="form-group"
+            id="event-select-group"
+            style="display: none; animation: fadeInField 0.3s ease"
+          >
+            <select class="form-control" id="event-select">
+              <option value="" disabled selected>اختر الفعالية...</option>
+            </select>
+          </div>
+          <div class="form-group">
             <input
               type="text"
               class="form-control"
@@ -2639,10 +2704,20 @@
       <a href="#" class="footer-logo">إيڤ EVE</a>
       <p>جمعية إيڤ للتنمية والتمكين المجتمعي</p>
       <div class="social-icons">
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/967738457415" target="_blank"
+          ><i class="fab fa-whatsapp"></i
+        ></a>
+        <a href="https://x.com/eve_yngo/" target="_blank"
+          ><i class="fab fa-x-twitter"></i
+        ></a>
+        <a
+          href="https://www.instagram.com/eve_yngo?igsh=b3VtaW5zM25xa3h5"
+          target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://www.facebook.com/share/1DggPGLH1k/" target="_blank"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
       </div>
       <div class="footer-bottom">
         <p>
@@ -2914,6 +2989,55 @@
         initPagination("reports-grid", "reports-pagination", 3);
         initPagination("stories-grid", "stories-pagination", 3);
       });
+
+      // ===== قائمة الفعاليات الديناميكية =====
+      const eventsData = {
+        "تسجيل في دورة": ["ريادة الأعمال والمشاريع", "أساسيات التسويق الرقمي"],
+        "تسجيل في مخيم ": ["مخيم المبتكر الصغير"],
+        "تسجيل في أمسية": ["دور المجتمع في التنمية", "صحة الأسرة والمجتمع"],
+        " تسجيل في بازار": ['بازار "إبداعات إيڤ"'],
+      };
+
+      function handleReasonChange(select) {
+        const val = select.value;
+        const group = document.getElementById("event-select-group");
+        const eventSelect = document.getElementById("event-select");
+
+        const hasEvents = eventsData[val] && eventsData[val].length > 0;
+
+        if (hasEvents) {
+          // تعبئة الخيارات
+          eventSelect.innerHTML =
+            '<option value="" disabled selected>اختر الفعالية...</option>';
+          eventsData[val].forEach(function (ev) {
+            const opt = document.createElement("option");
+            opt.value = ev;
+            opt.textContent = ev;
+            eventSelect.appendChild(opt);
+          });
+          group.style.display = "block";
+          // إعادة تشغيل الأنيميشن
+          group.style.animation = "none";
+          group.offsetHeight; // trigger reflow
+          group.style.animation = "fadeInField 0.35s ease";
+        } else {
+          group.style.display = "none";
+          eventSelect.innerHTML =
+            '<option value="" disabled selected>اختر الفعالية...</option>';
+        }
+      }
     </script>
+    <style>
+      @keyframes fadeInField {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
   </body>
 </html>
